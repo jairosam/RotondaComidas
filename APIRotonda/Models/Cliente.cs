@@ -1,6 +1,5 @@
 ﻿namespace APIRotonda.Models
 {
-    #pragma warning disable
     public class Cliente
     {
         public int id { get; set; }

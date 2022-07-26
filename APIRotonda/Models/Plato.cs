@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIRotonda.Models
 {
-#pragma warning disable
     public class Plato
     {
         public int id { get; set; }

@@ -2,7 +2,6 @@
 
 namespace APIRotonda.Models
 {
-#pragma warning disable
     public class Ingrediente
     {
         public int id { get; set; }

@@ -2,7 +2,6 @@
 
 namespace APIRotonda.Models
 {
-    #pragma warning disable
     public class Pedido
     {
         public int id { get; set; }

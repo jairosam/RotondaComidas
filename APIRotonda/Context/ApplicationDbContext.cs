@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace APIRotonda.Context
 {
-    #pragma warning disable
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
@@ -14,10 +13,9 @@ namespace APIRotonda.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<IngredientePlato>()
-                .HasKey(ip => new { ip.fkIngrediente, ip.fkPlato });
-            modelBuilder.Entity<PedidoPlato>()
-                .HasKey(pp => new { pp.fkPlato, pp.fkPedido });
+            modelBuilder.Entity<IngredientePlato>().HasKey(ip => new { ip.fkIngrediente, ip.fkPlato });
+            modelBuilder.Entity<PedidoPlato>().HasKey(pp => new { pp.fkPlato, pp.fkPedido });
+            modelBuilder.Entity<Cliente>().HasIndex(x => x.cedula).IsUnique();
         }
 
         public DbSet<Cliente> Cliente { get; set; }

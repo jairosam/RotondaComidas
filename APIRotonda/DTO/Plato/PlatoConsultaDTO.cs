@@ -1,7 +1,8 @@
 ﻿namespace APIRotonda.DTO.Plato
 {
-    public class PlatoCreacionDTO
+    public class PlatoConsultaDTO
     {
+        public int id { get; set; }
         public string nombrePlato { get; set; }
         public int fkTipo { get; set; }
     }

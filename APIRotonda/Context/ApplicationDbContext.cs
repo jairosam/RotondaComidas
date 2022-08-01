@@ -16,6 +16,7 @@ namespace APIRotonda.Context
             modelBuilder.Entity<IngredientePlato>().HasKey(ip => new { ip.fkIngrediente, ip.fkPlato });
             modelBuilder.Entity<PedidoPlato>().HasKey(pp => new { pp.fkPlato, pp.fkPedido });
             modelBuilder.Entity<Cliente>().HasIndex(x => x.cedula).IsUnique();
+            modelBuilder.Entity<Restaurante>().HasIndex(x => x.nit).IsUnique();
         }
 
         public DbSet<Cliente> Cliente { get; set; }

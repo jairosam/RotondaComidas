@@ -1,4 +1,5 @@
 ﻿using APIRotonda.DTO.Cliente;
+using APIRotonda.DTO.Restaurante;
 using APIRotonda.Models;
 using AutoMapper;
 
@@ -10,6 +11,8 @@ namespace APIRotonda.Services.Mapper
         {
             CreateMap<ClienteCreacionDTO, Cliente>();
             CreateMap<Cliente, ClienteConsultaDTO>();
+            CreateMap<RestauranteCreacionDTO, Restaurante>();
+            CreateMap<Restaurante, RestauranteConsultaDTO>();
         }
     }
 }

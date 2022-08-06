@@ -153,6 +153,9 @@ namespace APIRotonda.Migrations
                     b.Property<int>("fkTipo")
                         .HasColumnType("int");
 
+                    b.Property<string>("foto")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("nombrePlato")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

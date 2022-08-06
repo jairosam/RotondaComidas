@@ -65,7 +65,7 @@ namespace APIRotonda.Migrations
                     b.Property<decimal>("costoUnitario")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<string>("tipo")
+                    b.Property<string>("nombre")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
@@ -181,12 +181,17 @@ namespace APIRotonda.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nit")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("nombre")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
+
+                    b.HasIndex("nit")
+                        .IsUnique();
 
                     b.ToTable("Restaurante");
                 });

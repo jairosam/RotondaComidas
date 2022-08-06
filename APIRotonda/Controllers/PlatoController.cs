@@ -25,6 +25,8 @@ namespace APIRotonda.Controllers
         {
             var existeRestaurante = await context.Restaurante.AnyAsync(x => x.id == idRestaurante);
             if (!existeRestaurante) return NotFound($"El restaurante con id {idRestaurante} no fue encontrado");
+            var ingredientesIds = await context.Ingrediente.Where(x => platoDTO.ingredientes.Contains(x.id)).Select(x => x.id).ToListAsync();
+            if (ingredientesIds.Count != platoDTO.ingredientes.Count) return NotFound("Uno de los ingredientes solicitados no se encuentra en la base de datos"); 
             var plato = mapper.Map<Plato>(platoDTO);
             plato.fkRestaurante = idRestaurante;
             context.Add(plato);

@@ -1,5 +1,6 @@
 ﻿using APIRotonda.Context;
 using APIRotonda.DTO.Pedido;
+using APIRotonda.DTO.Plato;
 using APIRotonda.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,18 @@ namespace APIRotonda.Controllers
             context.Add(pedido);
             await context.SaveChangesAsync();
             return Ok("Pedido realizado correctamente");
-        } 
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<PedidoConsultaDTO>>> GetPedidos([FromRoute] int idCliente)
+        {
+            var existeCliente = await context.Cliente.AnyAsync(x => x.id == idCliente);
+            if (!existeCliente)
+            {
+                return BadRequest($"No existe cliente con id {idCliente}");
+            }
+            var pedido = await context.Pedido.Where(x => x.fkCliente == idCliente).ToListAsync();
+            return mapper.Map<List<PedidoConsultaDTO>>(pedido);
+        }
     }
 }

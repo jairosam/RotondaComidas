@@ -2,6 +2,8 @@
 using APIRotonda.DTO.Plato;
 using APIRotonda.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +11,7 @@ namespace APIRotonda.Controllers
 {
     [ApiController]
     [Route("api/{idRestaurante:int}/platos")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class PlatoController : Controller
     {
         private readonly ApplicationDbContext context;

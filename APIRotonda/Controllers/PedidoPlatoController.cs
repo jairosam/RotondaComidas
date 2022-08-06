@@ -2,6 +2,8 @@
 using APIRotonda.DTO.Pedido;
 using APIRotonda.DTO.Plato;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +11,7 @@ namespace APIRotonda.Controllers
 {
     [ApiController]
     [Route("pedido/plato/{idPedido:int}")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class PedidoPlatoController : Controller
     {
         private readonly ApplicationDbContext context;

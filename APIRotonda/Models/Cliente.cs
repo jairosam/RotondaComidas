@@ -1,4 +1,6 @@
-﻿namespace APIRotonda.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace APIRotonda.Models
 {
     public class Cliente
     {
@@ -8,7 +10,6 @@
         public string direccion { get; set; }
         public string ciudad { get; set; }
         public string correo { get; set; }
-
         public List<Pedido> Pedido { get; set; }
     }
 }

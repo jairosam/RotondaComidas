@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APIRotonda.Models
 {
@@ -17,6 +18,8 @@ namespace APIRotonda.Models
         public int fkCliente { get; set; }
         public Cliente Cliente { get; set; }
 
+        public string userId { get; set; }
+        public IdentityUser User { get; set; }
         public List<PedidoPlato> PedidoPlato { get; set; }
     }
 }

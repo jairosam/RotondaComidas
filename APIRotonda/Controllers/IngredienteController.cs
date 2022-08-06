@@ -2,6 +2,8 @@
 using APIRotonda.DTO.Ingrediente;
 using APIRotonda.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +11,7 @@ namespace APIRotonda.Controllers
 {
     [ApiController]
     [Route("api/ingredientes")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class IngredienteController : Controller
     {
         private readonly ApplicationDbContext context;

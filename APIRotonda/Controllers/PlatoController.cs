@@ -45,5 +45,21 @@ namespace APIRotonda.Controllers
             var query = await context.Plato.Where(x => x.fkRestaurante == idRestaurante).ToListAsync();
             return mapper.Map<List<PlatoConsultaDTO>>(query);
         }
+
+        [HttpGet("{idPlato:int}")]
+        public async Task<ActionResult<PlatoConIngredientesDTO>> GetPlato([FromRoute] int idRestaurante, [FromRoute] int idPlato)
+        {
+            var restaurante = await context.Restaurante.FirstOrDefaultAsync(x => x.id == idRestaurante);
+            if (restaurante == null) return NotFound($"No se encuentra el restaurante con id {idRestaurante}");
+            var plato = await context.Plato
+                .Include(x => x.IngredientePlato)
+                .ThenInclude(x => x.Ingrediente)
+                .FirstOrDefaultAsync(x => x.id == idPlato);
+            if (plato == null) return NotFound($"No se encuentra el plato con id {idPlato}");
+            if (plato.fkRestaurante != restaurante.id) return NotFound($"El plato solicitado no pertenece al restaurante");
+            var retorno = mapper.Map<PlatoConIngredientesDTO>(plato);
+            return retorno;
+        }
+
     }
 }

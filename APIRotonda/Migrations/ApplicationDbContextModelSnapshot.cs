@@ -45,11 +45,16 @@ namespace APIRotonda.Migrations
                     b.Property<string>("nombre")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("userId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("id");
 
                     b.HasIndex("cedula")
                         .IsUnique()
                         .HasFilter("[cedula] IS NOT NULL");
+
+                    b.HasIndex("userId");
 
                     b.ToTable("Cliente");
                 });
@@ -152,6 +157,9 @@ namespace APIRotonda.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
 
+                    b.Property<int>("costo")
+                        .HasColumnType("int");
+
                     b.Property<int>("fkRestaurante")
                         .HasColumnType("int");
 
@@ -186,6 +194,9 @@ namespace APIRotonda.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("direccion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("foto")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("nit")
@@ -416,6 +427,15 @@ namespace APIRotonda.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("APIRotonda.Models.Cliente", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("userId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("APIRotonda.Models.IngredientePlato", b =>

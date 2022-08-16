@@ -36,5 +36,12 @@ namespace APIRotonda.Controllers
             await context.SaveChangesAsync();
             return Ok("Ingrediente creado correctamente");
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<IngredienteConsultaDTO>>> Get()
+        {
+            var listado = await context.Ingrediente.ToListAsync();
+            return mapper.Map<List<IngredienteConsultaDTO>>(listado);
+        }
     }
 }

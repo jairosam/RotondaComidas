@@ -13,6 +13,7 @@ namespace APIRotonda.Models
         public string nit { get; set; }
         public string direccion { get; set; }
         public string ciudad { get; set; }
+        public string foto { get; set; }
 
         // Propiedades de navegación
         public List<Plato> Plato { get; set; }

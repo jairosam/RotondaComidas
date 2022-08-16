@@ -100,9 +100,10 @@ namespace APIRotonda
             // Configure the HTTP request pipeline.
             if (env.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 

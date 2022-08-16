@@ -22,8 +22,14 @@ namespace APIRotonda.Services.Mapper
             CreateMap<PlatoCreacionDTO, Plato>()
                 .ForMember(plato => plato.IngredientePlato, opciones => opciones.MapFrom(MapIngredientePlato));
             CreateMap<Plato, PlatoConsultaDTO>();
+            CreateMap<Plato, PlatoConIngredientesDTO>();
+
+
             CreateMap<Pedido, PedidoConPlatosDTO>()
                 .ForMember(pedido => pedido.Platos, opciones => opciones.MapFrom(MapPedidoConPlato));
+
+            CreateMap<Plato, PlatoConIngredientesDTO>()
+                .ForMember(plato => plato.Ingredientes, opciones => opciones.MapFrom(MapPlatoConIngredientes));
 
             CreateMap<TipoPlatoCreacionDTO, TipoPlato>();
             CreateMap<TipoPlato, TipoPlatoConsultaDTO>();
@@ -33,6 +39,23 @@ namespace APIRotonda.Services.Mapper
             CreateMap<Pedido, PedidoConsultaDTO>();
 
             CreateMap<IngredienteCreacionDTO, Ingrediente>();
+            CreateMap<Ingrediente, IngredienteConsultaDTO>();
+        }
+
+        private List<IngredienteConsultaDTO> MapPlatoConIngredientes(Plato plato, PlatoConsultaDTO platoDTO)
+        {
+            var ingredientesDTO = new List<IngredienteConsultaDTO>();
+            if (plato.IngredientePlato == null) return null;
+            foreach (var ingredientePlato in plato.IngredientePlato)
+            {
+                ingredientesDTO.Add(new IngredienteConsultaDTO
+                {
+                    id = ingredientePlato.Ingrediente.id,
+                    nombre = ingredientePlato.Ingrediente.nombre,
+                    costoUnitario = ingredientePlato.Ingrediente.costoUnitario
+                });
+            }
+            return ingredientesDTO;
         }
 
         private List<PlatoConsultaDTO> MapPedidoConPlato(Pedido pedido, PedidoConsultaDTO pedidoDTO)

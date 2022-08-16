@@ -9,8 +9,8 @@ namespace APIRotonda.Models
 
         [Required]
         public string nombrePlato { get; set; }
+        public int costo { get; set; }
         public string foto { get; set; }
-
 
         // Asignación de foraneas
         [ForeignKey("Restaurante")]
